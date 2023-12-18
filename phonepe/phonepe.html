@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 400px;
+            margin: auto;
+            /* border: 1px solid red; */
+            height: 200px;
+            text-align: center;
+        }
+        button{
+            margin-top: 60px;
+        }
+        input{
+            padding: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 style="color: red;">make payment here</h1>
+        <input type="number" placeholder="Please enter your amount">
+        <h2></h2>
+        <button>make payment</button>
+    </div>
+
+</body>
+</html>
+<script>
+    let h2 = document.querySelector("h2")
+    let div = document.querySelector("div")
+    let button = document.querySelector("button")
+   
+    let input = document.querySelector("input")
+    
+    
+     let User = new Promise(function(resolve, reject){
+    
+  
+        resolve(function(){
+        setTimeout(function(){
+            if(input.value<=0){
+               h2.innerText = "please enter currect amount!" 
+            }else{
+                h2.innerText = "Payment successful"
+                input.style.display = "none"
+            }
+
+       
+       
+    },2000)
+
+  })
+ 
+     
+     
+        reject(function(){
+    setTimeout(function(){
+        h2.innerText = "Payment failed Try again"
+        
+    },2000)
+  })
+ 
+     
+     
+
+    })
+    User.then(function(user){
+        button.addEventListener('click', function(){
+            h2.innerText = "Payment in Processing........"
+            user()
+              
+                })
+              
+
+    })
+    User.catch(function(user){
+        
+     h2.innerText = "Payment in Processing........"
+     user()
+
+      
+    })
+
+    
+
+</script>
